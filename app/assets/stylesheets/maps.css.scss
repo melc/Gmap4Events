@@ -68,10 +68,6 @@ div {
 	padding-left: 0;
 }
 
-.inline {
-	display: inline;
-}
-
 #screenDIV .row {
 	margin: 0 !important;
 }
@@ -110,7 +106,7 @@ div {
 	color: #450104;
 }
 
-.markerSize, .markerNameDIV {
+.markerSize, .markerNameDIV, #option-section, #search-option {
 	margin-left: -15px;
 }
 
@@ -144,19 +140,15 @@ div {
 }
 
 .mapSection {
-	margin-left: 0;
+	margin: 0 0 0 -15px !important;
 	padding-left: 0;
 	text-align: top; 
 }
 
 #map-canvas {
-	width: 99%; 
+	width: 102%;
 	height: 510px; 
 	border: 2px solid lightgrey;	
-}
-
-#marker_location {
-	width: 400px;
 }
 
 .infoboxStyle, .infoboxStyle a:link, .infoboxStyle a:visited, .infoboxStyle a:hover, .gm-addr, .gm-phone {
@@ -281,14 +273,42 @@ div {
 	text-shadow:5px 5px 10px yellow !important;
 }
 
-#mode {
-	position: absolute; 
-	right: 14.8%;
-	width: 8% !important;
-    height: 3.5% !important;
-	font-size: 11px;
-	font-weight: 500;
-    top: 1.7% !important;
-    text-align: left !important;	
+#option-section {
+	width: 102%;
 }
 
+#marker_location {
+	width: 100%;
+}
+
+#route-start, #mode {
+	margin-right: 10px;
+}
+
+#myloc-wrapper {
+	display: block;
+}
+
+
+.font-small {
+	font-size: 88%;
+}
+.div-inline {
+	float: left;
+}
+
+.inline {
+	display: inline;
+}
+
+.clear-both {
+	clear:both;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
+}

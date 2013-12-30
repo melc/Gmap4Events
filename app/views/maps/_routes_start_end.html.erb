@@ -1,0 +1,20 @@
+          <div class="btn-group btn-xs invisible">  
+            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" id="route-start">Route Start <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li><a href="#" role="menuitem" tabindex="-1" class="font-small">Me</a></li>
+              <% @maps.each do |map| %>
+                <li><a href="#" role="menuitem" tabindex="-1" class="font-small"><%= map.name %></a></li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="btn-group btn-xs invisible">            
+            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" id="route-end">Route End <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li><a href="#" role="menuitem" tabindex="-1" class="font-small">Me</a></li>
+              <% @maps.each do |map| %>
+                <li><a href="#" role="menuitem" tabindex="-1" class="font-small"><%= map.name %></a></li>
+              <% end %>
+            </ul>
+          </div>           

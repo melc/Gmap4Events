@@ -8,6 +8,8 @@ var addressForm = {
     postal_code: "short_name"
 };
 
+var SELF_ICON = "http://maps.google.com/mapfiles/kml/pushpin/pink-pushpin.png";
+ 
 // initialize infowindow width
 var BOX_WIDTH = 300;
 
@@ -173,8 +175,7 @@ $(document).on('ready page:load', function() {
         var markerIcon, markerLetter, markerCluster;
 
 // add marker of user's location onto map
-        var selfIcon = "http://maps.google.com/mapfiles/kml/pushpin/pink-pushpin.png";
-        addMarker(map, selfGeoLocation, "My Location", selfIcon, false);
+        addMarker(map, selfGeoLocation, "My Location", SELF_ICON, false);
 
 // add all markers onto map        
         for (var i=0; i<markerDetails.length; i++) {
@@ -361,7 +362,6 @@ $(document).on('ready page:load', function() {
                             heading: 270,
                             pitch:0
                         });
-                        $('#mode').hide();
                         panoramaSV.setVisible(true);
                     }
                 }
@@ -389,6 +389,9 @@ $(document).on('ready page:load', function() {
         for (var i=0; i< markers.length; i++) {
             if (markers[i].getPosition().lat() == lat && 
                 markers[i].getPosition().lng() == lng) {
+               
+                marker = markers[i];
+                google.maps.event.trigger(marker, 'click');
                 setStreetView(map, markers[i]);
             } 
         }
@@ -398,11 +401,10 @@ $(document).on('ready page:load', function() {
     $(document).on("click", ".markerName", function() {
         var i = $(this).attr("id");
       
-        infowindow.close();
         infowindow = new google.maps.InfoWindow({maxWidth:400});
 
-        var marker = markers[i];
-            google.maps.event.trigger(marker, "click");
+        marker = markers[i];
+        google.maps.event.trigger(markers[i], "click");
     });
 
     $(document).on("click", "#newloc", function() {
