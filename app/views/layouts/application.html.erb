@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Gmap4 Events" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Gmap4 Events" %>">
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag "bootstrap", "data-turbolinks-track" => true %>    
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.14&amp;sensor=true&amp;libraries=geometry,places,panoramio"></script>
+    <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>   
+<!-- callback function GetUserInfo to retrieve user's latitude and longitude from IP address
+  GetLatitude/GetLongitude will be used in detecting user's current location
+-->
+    <script type="text/javascript">
+      var GetLatitude, GetLongitude
+      function GetUserInfo (data) {
+        GetLatitude = data.latitude;
+        GetLongitude = data.longitude;
+      }
+    </script>
+    <script type="text/javascript" src="http://smart-ip.net/geoip-json?callback=GetUserInfo"></script> 
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+    <main role="main">
+       <%= render 'layouts/messages' %>
+       <%= yield %>
+    </main>
+  </body>
+</html>
