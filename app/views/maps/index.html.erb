@@ -42,12 +42,11 @@
               <div class="row">
                 <div class="col-md-1 col-sm-1 col-lg-1"></div>
                 <div class="markerInfo col-md-11 col-sm-11 col-lg-11">
-                  <%= link_to 'Edit', '#mapModal', :id => "btn_markerEdit", "data-toggle" => "modal", "data-load-remote" => "http://fiddle.jshell.net/Sherbrow/bHmRB/0/show/", "data-remote-target" => "#mapModal .modal-body" %>                
                   <%= link_to 'Delete', map, :id => "btn_markerDel", method: :delete, data: { confirm: 'Are you sure you want to remove this location ' + map.name + '?' } %></div>
               </div>
             </div>
-            <a href="" id="svLink"><div class="col-md-2 col-sm-2 col-lg-2">
-              <img src="http://maps.googleapis.com/maps/api/streetview?size=70x50&amp;location=<%= map.latitude %>,<%= map.longitude %>&amp;heading=270&amp;pitch=0&amp;sensor=true" class="img-thumbnail photoIcon" id="svImg" /></a>
+            <div class="col-md-2 col-sm-2 col-lg-2">
+              <a href="." id="svLink"><img src="http://maps.googleapis.com/maps/api/streetview?size=70x50&amp;location=<%= map.latitude %>,<%= map.longitude %>&amp;heading=165&amp;pitch=0&amp;sensor=true" class="img-thumbnail photoIcon" id="svImg" /></a>
             </div>
           </div>
         </div>
@@ -57,36 +56,6 @@
     </div>   
   </div>
   <div class="mapSection col-md-8 col-sm-8 col-lg-8">
-    <div id="option-section" class="row">
-      <div class="col-md-9 col-sm9 col-lg-9" id="search-option">
-        <div class="input-group input-group-sm">
-          <input type="text" placeholder="Enter Business or Location" class="form-control input-sm" id="marker_location">
-          <span class="input-group-addon">
-            <input type="radio" name="optionsRadios" id="inlineRadios1" value="Location" checked >Location
-            <input type="radio" name="optionsRadios" id="inlineRadios2" value="Business">Business           
-          </span>    
-        </div>
-      </div>
-      <div class="col-md-3 col-sm3 col-lg-3">  
-        <div class="pull-left" id="route-group">
-          <div class="btn-group btn-xs">
-            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" id="mode">Off Route <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-              <li role="mode"><a role="menuitem" tabindex="-1" class="font-small">Off Route</a></li>
-              <li role="mode"><a role="menuitem" tabindex="-1" class="font-small">Driving</a></li>
-              <li role="mode"><a role="menuitem" tabindex="-1" class="font-small">Walking</a></li>
-              <li role="mode"><a role="menuitem" tabindex="-1" class="font-small">Bicycling</a></li>
-              <li role="mode"><a role="menuitem" tabindex="-1" class="font-small">Transit</a></li>
-            </ul>  
-          </div>  
-        </div>
-        <div id="myloc-wrapper">
-          <div id="jqxSwitchButton" class="pull-right"></div>
-          <img src="http://maps.google.com/mapfiles/kml/pushpin/pink-pushpin.png" width="18px" height="18px" class="pull-right" />
-        </div>
-      </div>
-    </div>
     <div id="map-canvas" class="clear-both"></div>
   </div>  
 </div>

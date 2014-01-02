@@ -1,25 +1,12 @@
 class MapsController < ApplicationController
-  before_action :set_map, only: [:show, :edit, :update, :destroy]
+  before_action :set_map, only: [:destroy]
+  respond_to :json
   require 'uri'
 
   # GET /maps
   # GET /maps.json
   def index
     @maps = Map.all
-  end
-
-  # GET /maps/1
-  # GET /maps/1.json
-  def show
-  end
-
-  # GET /maps/location
-  def location
-    @map = Map.new
-  end
-
-  # GET /maps/1/edit
-  def edit
   end
 
   # POST /maps
@@ -29,24 +16,10 @@ class MapsController < ApplicationController
 
     respond_to do |format|
       if @map.save
-        format.html { redirect_to @map, notice: 'Map was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @map }
-      else
-        format.html { render template: 'location' }
-        format.json { render json: @map.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /maps/1
-  # PATCH/PUT /maps/1.json
-  def update
-    respond_to do |format|
-      if @map.update(map_params)
-        format.html { redirect_to @map, notice: 'Map was successfully updated.' }
+        format.html { redirect_to maps_url }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { redirect_to maps_url }
         format.json { render json: @map.errors, status: :unprocessable_entity }
       end
     end

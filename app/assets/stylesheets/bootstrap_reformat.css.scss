@@ -23,9 +23,17 @@
 }
 
 .modal-dialog {
-	max-width: 450px;
+	max-width: 470px;
 }
 
 .modal-header .close {
 	color: black !important;
+}
+
+.nav.navbar-nav.pull-right  {
+	width: 70%;
+}
+
+.navbar-header {
+	height: 50px;
 }

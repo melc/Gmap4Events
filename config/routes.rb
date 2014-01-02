@@ -7,6 +7,8 @@ Gmap4Events::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'maps#index'
 
+  match '/maps/create' => 'maps#create', :via => :post
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -1,0 +1,32 @@
+<div id="option-section" class="pull-right">
+  <div class="row">
+    <div class="col-md-9 col-sm9 col-lg-9" id="search-option">
+      <div class="input-group input-group-sm">
+        <input type="text" placeholder="Enter Location or Business Name" class="form-control input-sm" id="marker_location" x-webkit-speech>
+        <span class="input-group-addon">
+          <input type="radio" name="searchRadios" id="searchRadios1" value="Location" checked >Location
+          <input type="radio" name="searchRadios" id="searchRadios2" value="Near">Near    
+        </span>    
+      </div>
+    </div>
+    <div class="col-md-3 col-sm3 col-lg-3" id="optionmenu-wrapper">  
+      <div id="route-group">
+        <div class="btn-group btn-xs">
+          <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" data-remote="true" id="mode">Off Route <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" id="mode-menu">
+            <li role="mode"><a href="#" role="menuitem" tabindex="-1" class="font-small">Off Route</a></li>
+            <li role="mode"><a href="#" role="menuitem" tabindex="-1" class="font-small" data-toggle="modal" data-target="#mapModal" data-title="Driving">Driving</a></li>
+            <li role="mode"><a href="#" role="menuitem" tabindex="-1" class="font-small" data-toggle="modal" data-target="#mapModal" data-title="Walking">Walking</a></li>
+            <li role="mode"><a href="#"role="menuitem" tabindex="-1" class="font-small" data-toggle="modal" data-target="#mapModal" data-title="Bicycling">Bicycling</a></li>
+            <li role="mode"><a href="#" role="menuitem" tabindex="-1" class="font-small" data-toggle="modal" data-target="#mapModal" data-title="Transit">Transit</a></li>
+          </ul>  
+        </div>  
+      </div>
+      <div id="myloc-wrapper" class="pull-right">
+        <div id="offSelfLoc"></div>
+        <img src="http://maps.google.com/mapfiles/kml/pushpin/pink-pushpin.png" width="18px" height="18px" id="offSelfLocIcon" alt="my location" />
+      </div>
+    </div>
+  </div>
+</div>
