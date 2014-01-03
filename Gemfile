@@ -35,6 +35,10 @@ gem 'rails-i18n', '~> 4.0.0'
 
 gem 'bootstrap-sass', "~> 3.0.3.0"
 
+# Sass-based Stylesheet Framework that streamlines the creation and maintainance of CSS 
+gem 'compass'
+gem "compass-rails", "~> 1.1.2"
+
 group :development do
   gem 'rails_layout'
 end

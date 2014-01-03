@@ -7,8 +7,8 @@
     <% iMarker = "A";
        i = 0 %>  
     <div id="mapSidebar">
-      <% @maps.each do |map| %>
-        <div class="markerSection">
+      <% @maps.each_with_index do |map, index| %>
+        <div class="markerSection<%= index %>" role="markerSection">
           <div class="row">
             <div class="col-md-1 col-sm-1 col-lg-1">
               <img src= "http://maps.google.com/mapfiles/kml/paddle/<%= iMarker %>.png" class="markerSize" /></div>
@@ -46,7 +46,7 @@
               </div>
             </div>
             <div class="col-md-2 col-sm-2 col-lg-2">
-              <a name="map-canvas" id="svLink"><img src="http://maps.googleapis.com/maps/api/streetview?size=70x50&amp;location=<%= map.latitude %>,<%= map.longitude %>&amp;heading=165&amp;pitch=0&amp;sensor=true" class="img-thumbnail photoIcon" id="svImg" /></a>
+              <a name="map-canvas" id="svLink<%= index %>" class="svLink"><img src="http://maps.googleapis.com/maps/api/streetview?size=70x50&amp;location=<%= map.latitude %>,<%= map.longitude %>&amp;heading=165&amp;pitch=0&amp;sensor=true" class="img-thumbnail photoIcon" id="svImg" /></a>
             </div>
           </div>
         </div>

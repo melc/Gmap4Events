@@ -268,6 +268,13 @@ $(document).on('ready', function() {
         
 // Start: event trigger when clicking on a marker
         google.maps.event.addListener(marker, "click", function() {
+
+            $('div[role=markerSection]').css('backgroundColor', 'transparent');
+            for (var i=0; i<markers.length; i++) 
+                if (marker.getPosition() == markers[i].getPosition() && marker.getTitle() == markers[i].getTitle())
+                   
+                    $('.markerSection'+i).css('backgroundColor', '#DCDCDC');
+        
             openInfoWindow(map, marker);
         }); 
     }     
@@ -335,7 +342,7 @@ $(document).on('ready', function() {
                                 '<div class="gm-phone">' + phone_number + '</div>' +
                             '</div>' +
                             '<div>' +
-                            '<a name="map-canvas" class="gm-sv thumbnail"><img src="http://maps.googleapis.com/maps/api/streetview?size=' + 
+                            '<a name="map-canvas" class="gm-sv thumbnail" id="gm-sv'+i+'"><img src="http://maps.googleapis.com/maps/api/streetview?size=' + 
                                 SV_THUMBNAIL + 'x50&location=' +
                                 markerDetails[i].latitude + ',' + markerDetails[i].longitude + '&heading=' + POV_HEADING + '&pitch=' + POV_PITCH + '&sensor=true"' +
                                 ' id="svThumbnail" /></a>' +
@@ -353,7 +360,7 @@ $(document).on('ready', function() {
     };
 // End: Set InfoWindow Content
 
-    function setStreetViewMap(objTag, map) {
+    function setStreetViewMap(objTag, index, map) {
         var src_str = objTag.children("img").attr("src");
         src_str = src_str.split("location=").slice(1).join('');
         src_str = src_str.substring(0, src_str.indexOf("&heading"));
@@ -361,8 +368,9 @@ $(document).on('ready', function() {
         var lng = src_str.split(",").slice(1).join('');
         var latlng = new google.maps.LatLng(lat, lng);
 
+        $('div[role=markerSection]').css('backgroundColor', 'transparent');
         openStreetViewMap(latlng, map);
-
+        $('.markerSection'+index).css('backgroundColor', '#DCDCDC');
     }
     
     function openStreetViewMap(latlng, map) {
@@ -462,6 +470,7 @@ $(document).on('ready', function() {
     $(document).on("click", ".markerName", function() {
         var i = $(this).attr("id");
 
+        $('div[role=markerSection]').css("backgroundColor", "transparent");
         marker = markers[i];
     
         streetviewPanorama.setVisible(false);
@@ -469,13 +478,15 @@ $(document).on('ready', function() {
     });
 
 // click on streetview thumbnail to open street view map
-    $(document).on("click", "#svLink", function()  {
-       setStreetViewMap($(this), map);
+    $(document).on("click", ".svLink", function()  {
+        var i = $(this).attr("id").split("svLink").slice(1).join('');
+        setStreetViewMap($(this), i, map);
     });
 
 // click on street view thumbnail to open screen view map
     $(document).on("click", ".gm-sv", function() {
-        setStreetViewMap($(this), map);
+        var i = $(this).attr("id").split("gm-sv").slice(1).join('');
+        setStreetViewMap($(this), i, map);
     });
 
     $('input[name=searchRadios]').on('change', function() { 

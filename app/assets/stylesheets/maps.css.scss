@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "compass";
+
 .google-map-canvas,
 .google-map-canvas * { width:100%;}
 
@@ -91,8 +93,15 @@ ul, ul li {
 	max-height: 510px;
 }
 
-.markerSection {
+div[role=markerSection] {
 	margin-bottom: 15px;
+}
+
+.markerSectionBgColor {
+	background-color: #fcfff4; // Old browsers
+	@include filter-gradient(#fcfff4, #e9e9ce, vertical); // IE6-9
+	@include background-image(linear-gradient(top, #fcfff4 0%,#e9e9ce 100%));
+
 }
 
 .markerSize {
@@ -163,14 +172,9 @@ ul, ul li {
 	color: white;
 	border-radius:  5px;
 
-	background: rgb(69,72,77); /* Old browsers */
-	background: -moz-linear-gradient(top,  rgba(69,72,77,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(69,72,77,1)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+	background-color: #3f4c6b; // Old browsers
+	@include filter-gradient(#3f4c6b, #3f4c6b, vertical); // IE6-9
+	@include background-image(linear-gradient(top,  #3f4c6b 0%,#3f4c6b 100%));
 
 }
 
