@@ -33,10 +33,12 @@ include:
 
 - click on street view photo to open street view map in default location [complete]
 
-- click a button to turn on/off user's location [incomplete]
+- click a button to turn on/off user's location [complete]
 
-- search and mark nearby specific business in an assigned distance area. [incomplete]
+- search and mark nearby specific business in an assigned distance area. [complete]
+
+- open two maps on one page: one in roadmap view, another in street view. [incomplete]
 
 ***
-![San Francisco Map](http://petskids.com:3000/assets/sf.png)
+![Twitter Map](assets/Gmap1.jpg)
 

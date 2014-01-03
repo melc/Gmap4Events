@@ -11,9 +11,13 @@ var addressForm = {
 // initialize user's geolocator marker/pin
 var SELF_ICON = "http://maps.google.com/mapfiles/kml/pushpin/pink-pushpin.png";
  
-var MARKER_HEIGHT = 30, MARKER_WIDTH = 30;  // initialize marker/pin size
-var BOX_WIDTH = 300;    // initialize infowindow width
-var SV_THUMBNAIL = BOX_WIDTH - 10;   // initialize street view thumbnail width
+var MARKER_HEIGHT = 30, MARKER_WIDTH = 30;  // constant val of marker/pin size
+var BOX_WIDTH = 320;                        // constant val of infowindow width
+var SV_THUMBNAIL = BOX_WIDTH - 10;          // constant val of street view thumbnail width
+
+var POV_HEADING = 165;                  // constant val of pov heading
+var POV_PITCH = 0;                      // constant val of pov pitch
+
 var SEARCH_TYPE = [];
 
 var latitude = null;                // latitude of geolocation global var
@@ -24,16 +28,17 @@ var service = null;                 // text search service global var
 var map = null;                     // map global var
 var marker = null;                  // marker global var
 var infowindow = null;              // infowindow global var
-var panoramaSV = null;              // streetview panorama global var
 var bounds = null;                  // bounds global var
-var directionsService = null;      // direction service global var
-var directionsDisplay = null;      // directions renderer global var
-var panoramioLayer = null;         // panoramio layer global var    
-var streetviewService = null;      // street view service global var 
+var directionsService = null;       // direction service global var
+var directionsDisplay = null;       // directions renderer global var
+var panoramioLayer = null;          // panoramio layer global var
+var panoramaSV = null;              // street view panorama service
+var streetviewPanorama = null;      // street view panorama service
+var streetviewService = null;       // street view service global var
 var autocomplete = null;            // autocomplete input location
 
 // load on document ready or page load 
-$(document).on('ready page:load', function() {
+$(document).on('ready', function() {
 
     var markerDetails = [];  // initialize marker detail information
     var markers = [];       // initialize markers array of jSon
@@ -51,14 +56,15 @@ $(document).on('ready page:load', function() {
     user_marker = new google.maps.Marker();
     bounds = new google.maps.LatLngBounds();
     infowindow = new google.maps.InfoWindow({maxWidth:400});    
-    streetviewService = new google.maps.StreetViewService();
+
+    streetviewPanorama = new google.maps.StreetViewPanorama(document.getElementById("map-canvas"));
 
     // initialize directionsservice and directionsrenderer
     directionsService = new google.maps.DirectionsService();
     directionsDisplay = new google.maps.DirectionsRenderer();
 
     // initialize panoramio view
-    panoramioLayer = new google.maps.panoramio.PanoramioLayer()    
+    panoramioLayer = new google.maps.panoramio.PanoramioLayer();  
     
     // Create the autocomplete object, restricting the search
     // to geographical location types.
@@ -166,7 +172,7 @@ $(document).on('ready page:load', function() {
         placeObject.latitude = place.geometry.location.lat();
         placeObject.longitude = place.geometry.location.lng();
         placeObject.name = place.name;
-        placeObject.formatted_address = place.formatted_address;
+        placeObject.formatted_address = place.formatted_address  ;
         placeObject.formatted_phone_number = place.formatted_phone_number;
         placeObject.url = place.url;
         placeObject.website = place.website;
@@ -198,6 +204,7 @@ $(document).on('ready page:load', function() {
 
 // Start: Build map
     function buildMap (GeoLoc, zoomVal) {
+        streetviewPanorama.setVisible(false);
         map.setCenter(new google.maps.LatLng(GeoLoc.lat(), GeoLoc.lng()));
         map.setZoom(zoomVal);
 
@@ -273,9 +280,107 @@ $(document).on('ready page:load', function() {
     };
 // End: Remove a marker from map
 
-// Start: Draw route and direction, and display direction in a modal
-    function calcRoute(map, mode) {
+// Start: Popup Infowindow
+    function openInfoWindow(map, marker) {
+
+        var contentStr = setupInfoWinContent(marker);
+        var LatLng = marker.getPosition();
+
+        infowindow.setContent(contentStr);
+        infowindow.setPosition(LatLng);
+
+        infowindow.open(map, marker);
+    };
+// End: Popup Infowindow        
+
+// Start: Set InfoWindow Content
+    function setupInfoWinContent(marker) {
+        var address, name, rating, url;
+        var box_width = BOX_WIDTH;
+        var content = '';
+
+        for (var i=0; i<markerDetails.length; i++) {
+            if (marker.getPosition().lat() === markerDetails[i].latitude && 
+                marker.getPosition().lng() === markerDetails[i].longitude) {
+                name = markerDetails[i].name;
+                address = markerDetails[i].formatted_address;
+
+                rating = markerDetails[i].rating ? markerDetails[i].rating : "";
+                url = markerDetails[i].url;
+
+                phone_number = ! markerDetails[i].formatted_phone_number ? "" : markerDetails[i].formatted_phone_number;
+                if (phone_number.toString() === 'undefined')
+                    phone_number = '';
+
+                website = ! markerDetails[i].website ? "" : markerDetails[i].website;
+                if (website.toString() === 'undefined')
+                    website = '';
+            
+                content = '<div class="infoboxStyle" style="width:' + box_width + 'px;">' +
+                            '<div>' +
+                                '<span class="gm-title">&nbsp;&nbsp;' + name + '&nbsp;&nbsp;&nbsp;</span>' +
+                                '<span class="gm-more"><a href="' + url + '" target="_blank">more info</a></span>' +
+                            '</div>' +
+                            '<div class="gm-rev">' +
+                                '<span class="gm-rating">' + rating + '</span>' +
+                                '<span>' +
+                                    '<div class="gm-stars-b">' +
+                                        '<div class="gm-stars-f" style="width:' + (65 * rating / 5) + 'px;"></div>' +
+                                    '</div>' +
+                                '</span>' +
+                            '</div>' +
+                            '<div class="gm-basicinfo">' +
+                                '<div class="gm-addr">' + address + '</div>' +
+                                '<div class="gm-website"><a href="' + website + '" target="_blank">' + decodeURI(website) + '</a></div>' +
+                                '<div class="gm-phone">' + phone_number + '</div>' +
+                            '</div>' +
+                            '<div>' +
+                            '<a name="map-canvas" class="gm-sv thumbnail"><img src="http://maps.googleapis.com/maps/api/streetview?size=' + 
+                                SV_THUMBNAIL + 'x50&location=' +
+                                markerDetails[i].latitude + ',' + markerDetails[i].longitude + '&heading=' + POV_HEADING + '&pitch=' + POV_PITCH + '&sensor=true"' +
+                                ' id="svThumbnail" /></a>' +
+                            '</div>' +
+                        '</div>';
+            }
+
+//          <img height="50px"' + SV_THUMBNAIL +'px" 
+//              src="http://cbk0.googleapis.com/cbk?output=thumbnail&cb_client=apiv3&v=4&panoid=' + 
+//              panoramaStreetView.getPano() + '&yaw=' + panoramaStreetView.getPov()+ 
+//              '&w=' + SV_THUMBNAIL +'&h=50&thumb=2"></img>
+//          <label class="gm-sv-label">Street View</label>
+        }
+        return content;
+    };
+// End: Set InfoWindow Content
+
+    function setStreetViewMap(objTag, map) {
+        var src_str = objTag.children("img").attr("src");
+        src_str = src_str.split("location=").slice(1).join('');
+        src_str = src_str.substring(0, src_str.indexOf("&heading"));
+        var lat = src_str.substring(0, src_str.indexOf(","));
+        var lng = src_str.split(",").slice(1).join('');
+        var latlng = new google.maps.LatLng(lat, lng);
+
+        openStreetViewMap(latlng, map);
+
+    }
+    
+    function openStreetViewMap(latlng, map) {
         
+        streetviewPanorama = map.getStreetView();
+        streetviewPanorama.setPosition(latlng);
+        streetviewPanorama.setPov({
+            heading: 145,
+            pitch: 0
+            });
+
+        streetviewPanorama.setVisible(true);
+    }
+
+// Start: Draw route and direction, and display direction in a modal
+    var calcRoute = function (map, mode, orig, dest) {
+        
+        alert('calc:'+ mode + "--"+ orig + "---" + dest);
         if (mode.toUpperCase() == 'OFF ROUTE')
             directionsDisplay.setMap(null);
         else  {
@@ -288,8 +393,16 @@ $(document).on('ready page:load', function() {
                 },
             });
 
-            var start = new google.maps.LatLng(selfGeoLocation.lat(), selfGeoLocation.lng());
-            var end = new google.maps.LatLng(markerDetails[0].latitude, markerDetails[0].longitude);
+            if (orig == 0)
+                var start = new google.maps.LatLng(selfGeoLocation.lat(), selfGeoLocation.lng());
+            else
+                var start = new google.maps.LatLng(marker[orig-1].latitude, marker[orig-1].longitude);
+            
+            if (dest == 0)
+                var end = new google.maps.LatLng(selfGeoLocation.lat(), selfGeoLocation.lng());
+            else
+                var end = new google.maps.LatLng(marker[dest-1].latitude, marker[dest-1].longitude);
+        
             var selectedMode = mode.toUpperCase();
 
             var request = {
@@ -315,127 +428,6 @@ $(document).on('ready page:load', function() {
     };
 // End: Draw driving route and direction, and display direction in a modal
 
-// Start: Popup Infowindow
-    function openInfoWindow(map, marker) {
-
-        var contentStr = setupInfoWinContent(marker);
-        var LatLng = marker.getPosition();
-
-        infowindow.setContent(contentStr);
-        infowindow.setPosition(LatLng);
-
-        infowindow.open(map, marker);
-    };
-// End: Popup Infowindow        
-
-// Start: Set InfoWindow Content
-    function setupInfoWinContent(marker) {
-        var address, name, rating, url;
-        var box_width = BOX_WIDTH;
-        var content = '';
-
-        for (var i=0; i<markerDetails.length; i++) {
-            if (marker.getPosition().lat() === markerDetails[i].latitude && 
-                marker.getPosition().lng() === markerDetails[i].longitude) {
-                name = markerDetails[i].name;
-                address = markerDetails[i].formatted_address;
-                
-                if (markerDetails[i].formatted_phone_number.toString() === 
-                    "undefined") {
-                    markerDetails[i].formatted_phone_number = "";
-                }
-          
-                rating = markerDetails[i].rating;
-                url = markerDetails[i].url;
-        
-                if (markerDetails[i].website.toString() === "undefined") {
-                    markerDetails[i].website = "";
-                }
-        
-                if (markerDetails[i].photos_url.toString() === "undefined" ||
-                    markerDetails[i].photos_url == null) {
-                    markerDetails[i].photos_url = "";
-                }
-        
-                content = '<div class="infoboxStyle" style="width:' + box_width + 'px;">' +
-                            '<div>' +
-                                '<span class="gm-title">&nbsp;&nbsp;' + name + '&nbsp;&nbsp;&nbsp;</span>' +
-                                '<span class="gm-more"><a href="' + url + '" target="_blank">more info</a></span>' +
-                            '</div>' +
-                            '<div class="gm-rev">' +
-                                '<span class="gm-rating">' + rating + '</span>' +
-                                '<span>' +
-                                    '<div class="gm-stars-b">' +
-                                        '<div class="gm-stars-f" style="width:' + (65 * rating / 5) + 'px;"></div>' +
-                                    '</div>' +
-                                '</span>' +
-                            '</div>' +
-                            '<div class="gm-basicinfo">' +
-                                '<div class="gm-addr">' + address + '</div>' +
-                                '<div class="gm-website"><a href="' + markerDetails[i].website + '" target="_blank">' + decodeURI(markerDetails[i].website) + '</a></div>' +
-                                '<div class="gm-phone">' + markerDetails[i].formatted_phone_number + '</div>' +
-                            '</div>' +
-                            '<div>' +
-                            '<a href="." class="gm-sv thumbnail"><img src="http://maps.googleapis.com/maps/api/streetview?size=' + 
-                                SV_THUMBNAIL + 'x50&location=' +
-                                markerDetails[i].latitude + ',' + markerDetails[i].longitude + '&heading=165&pitch=0&sensor=true"' +
-                                ' id="svThumbnail" /></a>' +
-                            '</div>' +
-                        '</div>';
-            }
-
-//          <img height="50px"' + SV_THUMBNAIL +'px" 
-//              src="http://cbk0.googleapis.com/cbk?output=thumbnail&cb_client=apiv3&v=4&panoid=' + 
-//              panoramaStreetView.getPano() + '&yaw=' + panoramaStreetView.getPov()+ 
-//              '&w=' + SV_THUMBNAIL +'&h=50&thumb=2"></img>
-//          <label class="gm-sv-label">Street View</label>
-        }
-        return content;
-    };
-// End: Set InfoWindow Content
-
-// Start: Set street view panorama
-    function setStreetView(map, marker) {
-        
-        if (marker != null) {
-            latitude = marker.getPosition().lat();
-            longitude = marker.getPosition().lng();
-            dataLatLng = new google.maps.LatLng(latitude, longitude);
-
-            streetviewService = new google.maps.StreetViewService();
-            streetviewService.getPanoramaByLocation(dataLatLng, 
-                50, function(result, status) {
-                    if (status === google.maps.StreetViewStatus.OK) {
-                        var panoramaSV = map.getStreetView();
-                        panoramaSV.setPosition(result.location.latLng);
-                        panoramaSV.setPov({
-                            heading: 165,
-                            pitch:0
-                        });
-                        panoramaSV.setVisible(true);
-                    }
-                }
-            );
-         };
-    };
-    
-    function openStreetViewMap (objTag, map) {
-        
-        var src_str = objTag.children("img").attr("src");
-        src_str = src_str.split("location=").slice(1).join('');
-        src_str = src_str.substring(0, src_str.indexOf("&heading"));
-        var lat = src_str.substring(0, src_str.indexOf(","));
-        var lng = src_str.split(",").slice(1).join('');
-
-        var pin;
-        for (var i=0; i< markers.length; i++) {
-            if (markers[i].getPosition().lat() == lat && 
-                markers[i].getPosition().lng() == lng) {
-                pin = markers[i];
-            } 
-        }
-        setStreetView(map, pin);
-    }
 
 // Start: Create Panoramio View
     // $('#panoramioView').on("click", function() {
@@ -471,17 +463,19 @@ $(document).on('ready page:load', function() {
         var i = $(this).attr("id");
 
         marker = markers[i];
+    
+        streetviewPanorama.setVisible(false);
         google.maps.event.trigger(marker, "click");
     });
 
 // click on streetview thumbnail to open street view map
     $(document).on("click", "#svLink", function()  {
-       openStreetViewMap($(this), map);
+       setStreetViewMap($(this), map);
     });
 
 // click on street view thumbnail to open screen view map
     $(document).on("click", ".gm-sv", function() {
-        openStreetViewMap($(this), map);
+        setStreetViewMap($(this), map);
     });
 
     $('input[name=searchRadios]').on('change', function() { 
@@ -515,18 +509,6 @@ $(document).on('ready page:load', function() {
         $('#mode').html($(this).text()+' <span class="caret"></span>');
         var title = $(this).data('title');
         $(".modal-title").text(title + " Route Origin and Destination");
-    });
-
-
-    $('#route-origin-menu li a').click(function() {
-        alert($(this).text());
-        $('#route-origin').html($(this).text() + ' <span class="caret"></span>');
-        e.preventDefault();
-                //calcRoute(map, $(this).text());
-    });
-
-    $('#route-destination-menu li a').click(function() {
-        $('#route-destination').html($(this).text() + ' <span class="caret"></span>');
     });
 
     $('[data-load-remote]').on('click',function(e) {
