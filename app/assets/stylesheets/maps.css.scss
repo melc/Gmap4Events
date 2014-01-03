@@ -262,17 +262,18 @@ div[role=markerSection] {
 //}
 
 .modal.fade {
+	height: 100%;
 	-webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
 	-moz-transition: opacity 0.3s linear, left 0.3s ease-out;
 	-o-transition: opacity 0.3s linear, left 0.3s ease-out;
 	transition: opacity 0.3s linear, left 0.3s ease-out;
 }
 
-//.modal.fade.in {
-//	top: -25px;
-//	margin: 0;
-//	padding: 0;
-//}
+.modal.fade.in {
+	height: 100%;
+	top: -25px;
+	left: -63%;
+}
 
 .modal-title {
 	color: navy !important;
@@ -324,6 +325,11 @@ div[role=markerSection] {
 
 #route-origin-menu, #route-destination-menu {
 	width: 400px;
+}
+
+#route-set{
+	width: 324px;
+	margin: 0 auto;
 }
 
 .pin-size {

@@ -15,7 +15,7 @@ var MARKER_HEIGHT = 30, MARKER_WIDTH = 30;  // constant val of marker/pin size
 var BOX_WIDTH = 320;                        // constant val of infowindow width
 var SV_THUMBNAIL = BOX_WIDTH - 10;          // constant val of street view thumbnail width
 
-var POV_HEADING = 165;                  // constant val of pov heading
+var POV_HEADING = 145;                  // constant val of pov heading
 var POV_PITCH = 0;                      // constant val of pov pitch
 
 var SEARCH_TYPE = [];
@@ -378,64 +378,70 @@ $(document).on('ready', function() {
         streetviewPanorama = map.getStreetView();
         streetviewPanorama.setPosition(latlng);
         streetviewPanorama.setPov({
-            heading: 145,
-            pitch: 0
+            heading: POV_HEADING,
+            pitch: POV_PITCH
             });
 
         streetviewPanorama.setVisible(true);
     }
 
-// Start: Draw route and direction, and display direction in a modal
-    var calcRoute = function (map, mode, orig, dest) {
-        
-        alert('calc:'+ mode + "--"+ orig + "---" + dest);
-        if (mode.toUpperCase() == 'OFF ROUTE')
-            directionsDisplay.setMap(null);
-        else  {
-            directionsDisplay.setMap(map);
-
-            directionsDisplay.setOptions( { 
-                polylineOptions: {
-                    strokeColor: "darkgreen",
-                    strokeWeight: 4
-                },
-            });
-
-            if (orig == 0)
-                var start = new google.maps.LatLng(selfGeoLocation.lat(), selfGeoLocation.lng());
-            else
-                var start = new google.maps.LatLng(marker[orig-1].latitude, marker[orig-1].longitude);
-            
-            if (dest == 0)
-                var end = new google.maps.LatLng(selfGeoLocation.lat(), selfGeoLocation.lng());
-            else
-                var end = new google.maps.LatLng(marker[dest-1].latitude, marker[dest-1].longitude);
-        
-            var selectedMode = mode.toUpperCase();
-
-            var request = {
-                origin: start,
-                destination: end,
-                travelMode: google.maps.TravelMode[selectedMode]
-            };
-
-            directionsService.route(request, function(response, status) {
-                if (status === google.maps.DirectionsStatus.OK) {
-                    directionsDisplay.setDirections(response);
-                }
-            });
-           
-            $("#mapModal").modal("show");
-            $("#mapModal .modal-title").text("Route Directions");
-            directionsDisplay.setPanel(document.getElementById("mapModalBody"));
-            
-            $("#mapModal").on("shown", function() {
-                google.maps.event.trigger(map, "resize");
-            });
+// Start: Show route directions on driving, walking, bicycling, or transit
+    jQuery(function() {
+    
+        window.showRoute = function (mode, orig, dest) {
+            calcRoute(map, mode, orig, dest);
         }
+    });  
+     
+// Start: Draw route and direction, and display direction in a modal
+    function calcRoute(map, mode, orig, dest) {
+        
+        directionsDisplay.setMap(map);
+
+        directionsDisplay.setOptions( { 
+            polylineOptions: {
+                strokeColor: "darkgreen",
+                strokeWeight: 4
+            },
+        });
+
+        if (orig == 0) {
+            var start = new google.maps.LatLng(selfGeoLocation.lat(), selfGeoLocation.lng());
+            SELF_ROUTE = true;
+        }
+        else  
+            var start = markers[orig-1].getPosition();
+        
+        if (dest == 0) {
+            var end = new google.maps.LatLng(selfGeoLocation.lat(), selfGeoLocation.lng());
+            SELF_ROUTE = true;
+        }
+        else  
+            var end = markers[dest-1].getPosition();
+    
+        var selectedMode = $.trim(mode.toUpperCase());
+
+        var request = {
+            origin: start,
+            destination: end,
+            travelMode: google.maps.TravelMode[selectedMode]
+        };
+
+        directionsService.route(request, function(response, status) {
+            if (status === google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+            }
+        });
+       
+        $("#mapModal").modal("show");
+        $("#mapModal .modal-title").text("Route Directions");
+        directionsDisplay.setPanel(document.getElementById("mapModalBody"));
+        
+        $("#mapModal").on("shown", function() {
+            google.maps.event.trigger(map, "resize");
+        });
     };
 // End: Draw driving route and direction, and display direction in a modal
-
 
 // Start: Create Panoramio View
     // $('#panoramioView').on("click", function() {
@@ -507,8 +513,11 @@ $(document).on('ready', function() {
     $(document).on('click', '#offSelfLoc', function (event) {
         if ($('#offSelfLoc').jqxSwitchButton('checked')) {
             removeMarker(user_marker);
-            directionsDisplay.setMap(null);
-            $('#mode').html('Off Route <span class="caret"></span>');
+            if (SELF_ROUTE == true)   {
+                directionDisplay.setMap(null);
+                $('#mode').html('Off Route <span class="caret"></span>');
+            }
+            SELF_ROUTE = false;
         }
         else   {
             createMarker(map, selfGeoLocation, 'My Location', null, false);
@@ -519,15 +528,10 @@ $(document).on('ready', function() {
     $('#mode-menu li a').click(function() {
         $('#mode').html($(this).text()+' <span class="caret"></span>');
         var title = $(this).data('title');
-        $(".modal-title").text(title + " Route Origin and Destination");
+        if ($.trim(title) == 'Off Route') 
+            directionsDisplay.setDirections({ routes: [] }); 
+        else
+            $(".modal-title").text(title + " Route Origin and Destination");
     });
 
-    $('[data-load-remote]').on('click',function(e) {
-        e.preventDefault();
-        var $this = $(this);
-        var remote = $this.data('load-remote');
-        if(remote) {
-                $($this.data('remote-target')).load(remote);
-        }
-    });
 });

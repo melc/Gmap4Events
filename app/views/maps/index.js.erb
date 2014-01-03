@@ -6,7 +6,7 @@ $('#route-origin-menu li a').click(function() {
     $('#route-origin').html($(this).text() + ' <span class="caret"></span>');
     onOrig = $(this).data("id");
     if ($.trim($('#route-destination').text()) != $.trim('Route Destination')) {
-		window.calcRoute(map, $('#mode').text(), onOrig, onDest);
+		showRoute($('#mode').text(), onOrig, onDest);
 	}
 });
 
@@ -14,6 +14,6 @@ $('#route-destination-menu li a').click(function() {
     $('#route-destination').html($(this).text() + ' <span class="caret"></span>');
     onDest = $(this).data("id");
     if ($.trim($('#route-origin').text()) != $.trim('Route Origin')) {
-    	window.calcRoute(map, $('#mode').text(), onOrig, onDest);
+    	showRoute($('#mode').text(), onOrig, onDest);
     }
 });
