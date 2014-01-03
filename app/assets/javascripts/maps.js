@@ -375,14 +375,27 @@ $(document).on('ready', function() {
     
     function openStreetViewMap(latlng, map) {
         
-        streetviewPanorama = map.getStreetView();
-        streetviewPanorama.setPosition(latlng);
-        streetviewPanorama.setPov({
-            heading: POV_HEADING,
-            pitch: POV_PITCH
-            });
+        // streetviewPanorama = map.getStreetView();
+        // streetviewPanorama.setPosition(latlng);
+        // streetviewPanorama.setPov({
+        //     heading: POV_HEADING,
+        //     pitch: POV_PITCH
+        //     });
 
-        streetviewPanorama.setVisible(true);
+        // streetviewPanorama.setVisible(true);
+
+        streetviewService = new google.maps.StreetViewService();
+        streetviewService.getPanoramaByLocation(latlng, 50, function(result, status) {
+            if (status === google.maps.StreetViewStatus.OK) {
+                streetviewPanorama = map.getStreetView();
+                streetviewPanorama.setPosition(result.location.latLng);
+                streetviewPanorama.setPov({
+                    heading: POV_HEADING,
+                    pitch: POV_PITCH
+                });
+                streetviewPanorama.setVisible(true);
+            };
+        });
     }
 
 // Start: Show route directions on driving, walking, bicycling, or transit
