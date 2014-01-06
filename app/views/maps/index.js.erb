@@ -1,4 +1,4 @@
-$(".modal-body").html("<%= raw escape_javascript(render :partial => 'route') %>");
+$(".modal-body").html("<%= raw j(render :partial => 'route') %>");
 
 var onOrig = 0, onDest = 0;
 
@@ -16,4 +16,11 @@ $('#route-destination-menu li a').click(function() {
     if ($.trim($('#route-origin').text()) != $.trim('Route Origin')) {
     	showRoute($('#mode').text(), onOrig, onDest);
     }
+});
+
+$("#marker_location").focus(function() {
+    alert("getin");
+    @opp_index = marker.length;
+    @map = marker;
+    $('#markerSection').html("<%= raw j(render :partial => 'route') %>");
 });

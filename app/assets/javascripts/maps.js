@@ -193,13 +193,16 @@ $(document).on('ready', function() {
             dataType: "json",
             data:  placeData, 
             success: function (data) {
-                location.reload();
+                createMarker(map, place.geometry.location, place.name, markers.length, false);
+                setBounds(map, place.geometry.location);
+                markerCluster = new MarkerClusterer(map, markers);
             },
             failure: function(errMsg) {
                 alert(errMsg);
-            },
+            }
         })
     };
+
 // End: Location Searchbox Autocomplete
 
 // Start: Build map
@@ -270,10 +273,10 @@ $(document).on('ready', function() {
         google.maps.event.addListener(marker, "click", function() {
 
             $('div[role=markerSection]').css('backgroundColor', 'transparent');
-            for (var i=0; i<markers.length; i++) 
+            for (var i=markers.length-1; i>=0; i--) 
                 if (marker.getPosition() == markers[i].getPosition() && marker.getTitle() == markers[i].getTitle())
                    
-                    $('.markerSection'+i).css('backgroundColor', '#DCDCDC');
+                    $('#markerSection'+i).css('backgroundColor', '#DCDCDC');
         
             openInfoWindow(map, marker);
         }); 
@@ -370,20 +373,11 @@ $(document).on('ready', function() {
 
         $('div[role=markerSection]').css('backgroundColor', 'transparent');
         openStreetViewMap(latlng, map);
-        $('.markerSection'+index).css('backgroundColor', '#DCDCDC');
+        $('#markerSection'+index).css('backgroundColor', '#DCDCDC');
     }
     
     function openStreetViewMap(latlng, map) {
         
-        // streetviewPanorama = map.getStreetView();
-        // streetviewPanorama.setPosition(latlng);
-        // streetviewPanorama.setPov({
-        //     heading: POV_HEADING,
-        //     pitch: POV_PITCH
-        //     });
-
-        // streetviewPanorama.setVisible(true);
-
         streetviewService = new google.maps.StreetViewService();
         streetviewService.getPanoramaByLocation(latlng, 50, function(result, status) {
             if (status === google.maps.StreetViewStatus.OK) {
@@ -530,12 +524,12 @@ $(document).on('ready', function() {
                 directionDisplay.setMap(null);
                 $('#mode').html('Off Route <span class="caret"></span>');
             }
-            SELF_ROUTE = false;
         }
         else   {
             createMarker(map, selfGeoLocation, 'My Location', null, false);
             setBounds(map, selfGeoLocation);
         }
+        SELF_ROUTE = false;
     });
 
     $('#mode-menu li a').click(function() {

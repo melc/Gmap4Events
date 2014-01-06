@@ -1,0 +1,42 @@
+<div class="markerSection" role="markerSection" id="markerSection<%= @opp_index %>">
+  <div class="row">
+    <div class="col-md-1 col-sm-1 col-lg-1">
+      <img src= "http://maps.google.com/mapfiles/kml/paddle/<%= @iMarker %>.png" class="markerSize" /></div>
+    <div class="col-md-11 col-sm-11 col-lg-11">
+      <div class="markerNameDIV">
+        <a href="javascript:void(0);" class="markerName" id="<%= @opp_index %>"><%= @map.name %></a>&nbsp;&nbsp;
+        <a href="<%= @map.url %>" target="_blank">>> detail info.</a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-sm-10 col-lg-10">
+      <div class="row">
+        <div class="col-md-1 col-sm-1 col-lg-1"></div>
+        <div class="col-md-11 col-sm-11 col-lg-11">
+          <div class="markerInfo"><%= @map.formatted_address %></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-1 col-sm-1 col-lg-1"></div>
+        <div class="col-md-11 col-sm-11 col-lg-11">
+          <div class="markerInfo"><a href="<%= @map.website %>" target="_blank"><%= URI.decode(@map.website) unless @map.website=="undefined" || @map.website.nil? %></a></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-1 col-sm-1 col-lg-1"></div>
+        <div class="col-md-11 col-sm-11 col-lg-11">
+          <div class="markerInfo"><%= @map.formatted_phone_number unless @map.formatted_phone_number=="undefined" || @map.formatted_phone_number.nil? %></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-1 col-sm-1 col-lg-1"></div>
+        <div class="markerInfo col-md-11 col-sm-11 col-lg-11">
+          <%= link_to 'Delete', @map, :id => "btn_markerDel", method: :delete, data: { confirm: 'Are you sure you want to remove this location ' + @map.name + '?' } %></div>
+      </div>
+    </div>
+    <div class="col-md-2 col-sm-2 col-lg-2">
+      <a name="map-canvas" id="svLink<%= @opp_index %>" class="svLink"><img src="http://maps.googleapis.com/maps/api/streetview?size=70x50&amp;location=<%= @map.latitude %>,<%= @map.longitude %>&amp;heading=145&amp;pitch=0&amp;sensor=true" class="img-thumbnail photoIcon" id="svImg" /></a>
+    </div>
+  </div>
+</div>

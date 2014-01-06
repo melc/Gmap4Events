@@ -6,9 +6,15 @@ class MapsController < ApplicationController
   # GET /maps
   # GET /maps.json
   def index
-    @maps = Map.all
+    @maps = Map.order("id DESC").all
   end
 
+  def location
+  end
+
+  def near
+  end
+  
   # POST /maps
   # POST /maps.json
   def create

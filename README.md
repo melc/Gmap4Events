@@ -7,11 +7,10 @@ Gmap4Events is a google maps plugin for user's activities events arrangement. Th
 include: 
 
 - Ruby on Rails 4
-- Twitter Bootstrap 3.0.2
-- Bootswatch for Rails 4
+- jQuery 1.10.2
+- Twitter Bootstrap & Bootswatch 3.0.2
 - Google Maps Libraries
 - Google Maps Utilities MarkerClustererPlus
-- Sqlite3
 - MongoDB integration [incomplete]
 - Backbone.js integration [incomplete]
 
@@ -35,13 +34,13 @@ include:
 
 - click a button to turn on/off user's location [complete]
 
-- search and mark nearby specific business in an assigned distance area. [complete]
+- search and mark nearby specific business in an assigned distance area. [in bugs fix progress]
 
 - assign specific marker icon for various businesses [in progress]
 
-- open two maps on one page: one in roadmap view, another in street view.  Allow view in either two maps or one of each [incomplete]
+- open two maps on one page: one in roadmap view, another in street view.  Allow user view in either two maps or one of each [incomplete]
 
 - allow user to search businesses in 5, 10, 15, 20, 25, 30 miles from user's current location [incomplete]
 
 ***
-![Twitter Map](assets/Gmap1.jpg)
+![Google Map](http://twinpets.com/Content/images/Gmap1.jpg)

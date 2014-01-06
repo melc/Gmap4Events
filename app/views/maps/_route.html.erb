@@ -2,11 +2,11 @@
   <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" id="route-origin">Route Origin <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" id="route-origin-menu">
-    <li><a href="." role="menuitem" tabindex="-1" class="font-small" data-toggle="modal" data-target="#mapModal" data-id="0">
+    <li><a href="../../../../.rvm/gems/ruby-1.9.3-p484/gems/bootstrap-sass-3.0.3.0/vendor/assets/stylesheets" role="menuitem" tabindex="-1" class="font-small" data-toggle="modal" data-target="#mapModal" data-id="0">
       <img src="http://maps.google.com/mapfiles/kml/pushpin/pink-pushpin.png" class="pin-size"> Me</a></li>
     <% iMarker = "A"; %>
     <% @maps.each_with_index do |map, index| %>
-      <li><a href="." role="menuitem" tabindex="-1" class="font-small" data-toggle="modal" data-target="#mapModal" data-id="<%= index + 1 %>"><img src="http://maps.google.com/mapfiles/kml/paddle/<%= iMarker %>.png" class="pin-size" /> <%= map.name %></a></li>
+      <li><a href="../../../../.rvm/gems/ruby-1.9.3-p484/gems/bootstrap-sass-3.0.3.0/vendor/assets/stylesheets" role="menuitem" tabindex="-1" class="font-small" data-toggle="modal" data-target="#mapModal" data-id="<%= index + 1 %>"><img src="http://maps.google.com/mapfiles/kml/paddle/<%= iMarker %>.png" class="pin-size" /> <%= map.name %></a></li>
       <% iMarker = iMarker.succ %>
     <% end %> 
   </ul>
@@ -15,11 +15,11 @@
   <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" id="route-destination">Route Destination <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" id="route-destination-menu">
-    <li><a href="." role="menuitem" tabindex="-1" class="font-small" data-toggle="modal" data-target="#mapModal" data-id="0">
+    <li><a href="../../../../.rvm/gems/ruby-1.9.3-p484/gems/bootstrap-sass-3.0.3.0/vendor/assets/stylesheets" role="menuitem" tabindex="-1" class="font-small" data-toggle="modal" data-target="#mapModal" data-id="0">
       <img src="http://maps.google.com/mapfiles/kml/pushpin/pink-pushpin.png" class="pin-size" /> Me</a></li>
     <% iMarker = "A"; %>
     <% @maps.each_with_index do |map, index| %>
-      <li><a href="." role="menuitem" tabindex="-1" class="font-small" data-toggle="modal" data-target="#mapModal" data-id="<%= index + 1 %>">          
+      <li><a href="../../../../.rvm/gems/ruby-1.9.3-p484/gems/bootstrap-sass-3.0.3.0/vendor/assets/stylesheets" role="menuitem" tabindex="-1" class="font-small" data-toggle="modal" data-target="#mapModal" data-id="<%= index + 1 %>">
           <img src="http://maps.google.com/mapfiles/kml/paddle/<%= iMarker %>.png" class="pin-size" /> <%= map.name %></a></li</a></li>
       <% iMarker = iMarker.succ %>          
     <% end %>
