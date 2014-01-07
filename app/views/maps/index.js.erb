@@ -18,9 +18,3 @@ $('#route-destination-menu li a').click(function() {
     }
 });
 
-$("#marker_location").focus(function() {
-    alert("getin");
-    @opp_index = marker.length;
-    @map = marker;
-    $('#markerSection').html("<%= raw j(render :partial => 'route') %>");
-});

@@ -37,7 +37,7 @@ class MapsController < ApplicationController
     @map.destroy
     respond_to do |format|
       format.html { redirect_to maps_url }
-      format.json { head :no_content }
+      format.js { render :nothing => true }
     end
   end
 

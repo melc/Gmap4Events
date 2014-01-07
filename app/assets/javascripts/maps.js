@@ -190,18 +190,72 @@ $(document).on('ready', function() {
             type: "POST",
             url: "/maps/create", 
             contentType: "application/json; charset=utf-8",
-            dataType: "json",
+            dataType: "JSON",
             data:  placeData, 
-            success: function (data) {
+            success: function (json) {
+                markerDetails.push(placeObject);
                 createMarker(map, place.geometry.location, place.name, markers.length, false);
                 setBounds(map, place.geometry.location);
                 markerCluster = new MarkerClusterer(map, markers);
+                var index = markers.length - 1, htmlstr = itemHTML(place, index), previndex = index - 1;
+                $(htmlstr).insertBefore($('#markerSection'+previndex)); 
             },
             failure: function(errMsg) {
                 alert(errMsg);
             }
         })
     };
+
+// new marker DOM string
+    var itemHTML = function(pin, len) {
+
+        var phone_number = ! pin.formatted_phone_number ? "" : pin.formatted_phone_number;
+        if (phone_number.toString() === 'undefined')
+            phone_number = '';
+
+        var website = ! pin.website ? "" : pin.website;
+        if (website.toString() === 'undefined')
+            website = '';
+
+        var itemStr = 
+            ' <div class="markerSection" role="markerSection" id="markerSection' + len + '">' +
+            ' <div class="row">'+
+            ' <div class="col-md-1 col-sm-1 col-lg-1">'+
+            ' <img src= "http://maps.google.com/mapfiles/kml/paddle/'+String.fromCharCode("A".charCodeAt(0) + len) + '.png"' +
+            ' class="markerSize" /></div>'+
+            ' <div class="col-md-11 col-sm-11 col-lg-11">'+
+            ' <div class="markerNameDIV">'+
+            ' <a href="javascript:void(0);" class="markerName" id="' + len + '">' + pin.name + '</a>&nbsp;&nbsp;'+
+            ' <a href="' + pin.url + '" target="_blank">>> detail info.</a>'+
+            ' </div></div></div>'+
+            ' <div class="row">'+
+            ' <div class="col-md-10 col-sm-10 col-lg-10">'+
+            ' <div class="row">'+
+            ' <div class="col-md-1 col-sm-1 col-lg-1"></div>'+
+            ' <div class="col-md-11 col-sm-11 col-lg-11">'+
+            ' <div class="markerInfo">' + pin.formatted_address + '</div></div></div>'+
+            ' <div class="row">'+
+            ' <div class="col-md-1 col-sm-1 col-lg-1"></div>'+
+            ' <div class="col-md-11 col-sm-11 col-lg-11">'+
+            ' <div class="markerInfo"><a href="' + website + '" target="_blank">'+ decodeURIComponent(website) + 
+            ' </a></div></div></div>'+
+            ' <div class="row">'+
+            ' <div class="col-md-1 col-sm-1 col-lg-1"></div>'+
+            ' <div class="col-md-11 col-sm-11 col-lg-11">'+
+            ' <div class="markerInfo">' + phone_number + '</div></div></div>'+
+            ' <div class="row">'+
+            ' <div class="col-md-1 col-sm-1 col-lg-1"></div>'+
+            ' <div class="markerInfo col-md-11 col-sm-11 col-lg-11">'+
+            ' <a href="#" id="btn_markerDel">delete</a>'+
+//' <a href="/maps/" id="btn_markerDel" data-confirm="Are you sure you want to remove location of ' + pin.name + '?" data-method="delete" rel="nofollow">Delete</a>'+            
+            ' </div></div>'+
+            ' <div class="col-md-2 col-sm-2 col-lg-2">'+
+            ' <a name="map-canvas" id="svLink'+ len + '" class="svLink"><img src="http://maps.googleapis.com/maps/api/streetview?size=70x50&location='+
+             pin.geometry.location.lat()+','+pin.geometry.location.lng()+'&heading=145&amp;pitch=0&sensor=true" class="img-thumbnail photoIcon" id="svImg" /></a>'+
+            ' </div></div></div>';
+
+            return itemStr;
+    }
 
 // End: Location Searchbox Autocomplete
 
@@ -541,4 +595,18 @@ $(document).on('ready', function() {
             $(".modal-title").text(title + " Route Origin and Destination");
     });
 
+    // $('#btn_markerDel').click(function() {
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: '/maps/index',
+    //         data: {}
+    //         success: function(data){
+    //             var j = jQuery.parseJSON(data);
+    //             alert(j.id);
+    //         },
+    //         dataType: 'json'
+    //     });
+    // bind('ajax:success', function() {  
+    //     $(this).closest('#markerSection').remove();  
+    //});
 });
