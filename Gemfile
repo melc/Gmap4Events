@@ -7,7 +7,7 @@ gem 'rails', '4.0.2'
 gem 'sqlite3'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 5.0.3'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -37,7 +37,7 @@ gem 'bootstrap-sass', "~> 3.0.3.0"
 
 # Sass-based Stylesheet Framework that streamlines the creation and maintainance of CSS 
 gem 'compass'
-gem "compass-rails", "~> 1.1.2"
+gem "compass-rails", "~> 3.0.0"
 
 group :development do
   gem 'rails_layout'
