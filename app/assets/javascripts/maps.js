@@ -31,7 +31,9 @@ var infowindow = null;              // infowindow global var
 var bounds = null;                  // bounds global var
 var directionsService = null;       // direction service global var
 var directionsDisplay = null;       // directions renderer global var
+/*
 var panoramioLayer = null;          // panoramio layer global var
+*/
 var panoramaSV = null;              // street view panorama service
 var streetviewPanorama = null;      // street view panorama service
 var streetviewService = null;       // street view service global var
@@ -63,9 +65,11 @@ $(document).on('ready', function() {
     directionsService = new google.maps.DirectionsService();
     directionsDisplay = new google.maps.DirectionsRenderer();
 
+    /*
     // initialize panoramio view
     panoramioLayer = new google.maps.panoramio.PanoramioLayer();  
-    
+    */
+
     // Create the autocomplete object, restricting the search
     // to geographical location types.
     // initialize searchbox autocomplete
