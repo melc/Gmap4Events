@@ -43,4 +43,4 @@ include:
 - allow user to search businesses in 5, 10, 15, 20, 25, 30 miles from user's current location [incomplete]
 
 ***
-![Google Map](http://twinpets.com/Content/images/Gmap1.jpg)
+![Google Map](https://twinpets.com/Content/images/Gmap1.jpg)
