@@ -26,7 +26,18 @@
     <favorites_list name="Gmap4Events" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="_sidebar.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/maps/_sidebar.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="498">
+              <caret line="38" column="94" lean-forward="false" selection-start-line="38" selection-start-column="94" selection-end-line="38" selection-end-column="104" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -35,6 +46,7 @@
       <find>PetsKids</find>
       <find>http:</find>
       <find>sensor</find>
+      <find>googleapis</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -53,13 +65,13 @@
         <option value="$PROJECT_DIR$/config/environments/production.rb" />
         <option value="$PROJECT_DIR$/app/views/maps/_mapmenubar.html.erb" />
         <option value="$PROJECT_DIR$/app/views/maps/_route.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/maps/_sidebar.html.erb" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/maps.css.scss" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/_navigation.html.erb" />
         <option value="$PROJECT_DIR$/public/javascripts/jquery.js" />
         <option value="$PROJECT_DIR$/public/javascripts/jquery.min.js" />
+        <option value="$PROJECT_DIR$/app/views/maps/_sidebar.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/maps.js" />
       </list>
     </option>
@@ -142,6 +154,11 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="maps" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Gmap4Events" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Gmap4Events" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -427,17 +444,18 @@
       <workItem from="1506055600957" duration="3602000" />
       <workItem from="1506062848505" duration="2974000" />
       <workItem from="1506101446595" duration="667000" />
-      <workItem from="1506107024225" duration="2287000" />
+      <workItem from="1506107024225" duration="3640000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18238000" />
+    <option name="totallyTimeSpent" value="19591000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="52" y="-4" width="1308" height="772" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26376146" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26376146" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -792,7 +810,7 @@
         <state relative-caret-position="116">
           <caret line="5" column="11730" lean-forward="false" selection-start-line="5" selection-start-column="11730" selection-end-line="5" selection-end-column="11730" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -823,24 +841,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/maps.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="347" column="18" lean-forward="false" selection-start-line="347" selection-start-column="18" selection-end-line="347" selection-end-column="18" />
+        <state relative-caret-position="649">
+          <caret line="376" column="0" lean-forward="true" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
           <folding>
-            <marker date="1506110225192" expanded="true" signature="12467:12493" ph="..." />
-            <marker date="1506110225192" expanded="true" signature="12593:12599" ph=" " />
-            <marker date="1506110225192" expanded="true" signature="12599:12605" ph=" " />
-            <marker date="1506110225192" expanded="true" signature="12617:12623" ph=" " />
-            <marker date="1506110225192" expanded="true" signature="12623:12629" ph=" " />
-            <marker date="1506110225192" expanded="true" signature="12629:12635" ph=" " />
-            <marker date="1506110225192" expanded="true" signature="13117:13151" ph="..." />
+            <marker date="1506111464304" expanded="true" signature="12467:12493" ph="..." />
+            <marker date="1506111464304" expanded="true" signature="12593:12599" ph=" " />
+            <marker date="1506111464304" expanded="true" signature="12599:12605" ph=" " />
+            <marker date="1506111464304" expanded="true" signature="12617:12623" ph=" " />
+            <marker date="1506111464304" expanded="true" signature="12623:12629" ph=" " />
+            <marker date="1506111464304" expanded="true" signature="12629:12635" ph=" " />
+            <marker date="1506111464304" expanded="true" signature="13117:13151" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/maps/_sidebar.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="22" column="175" lean-forward="true" selection-start-line="22" selection-start-column="175" selection-end-line="22" selection-end-column="175" />
+        <state relative-caret-position="498">
+          <caret line="38" column="94" lean-forward="false" selection-start-line="38" selection-start-column="94" selection-end-line="38" selection-end-column="104" />
           <folding />
         </state>
       </provider>
