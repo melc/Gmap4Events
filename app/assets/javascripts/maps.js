@@ -351,7 +351,7 @@ $(document).on('ready', function() {
                             '<div>' +
                             '<a name="map-canvas" class="gm-sv thumbnail" id="gm-sv'+i+'"><img src="https://maps.googleapis.com/maps/api/streetview?size=' +
                                 SV_THUMBNAIL + 'x50&location=' +
-                                markerDetails[i].latitude + ',' + markerDetails[i].longitude + '&heading=' + POV_HEADING + '&pitch=' + POV_PITCH + '&sensor=true"' +
+                                markerDetails[i].latitude + ',' + markerDetails[i].longitude + '&heading=' + POV_HEADING + '&pitch=' + POV_PITCH  +
                                 ' id="svThumbnail" /></a>' +
                             '</div>' +
                         '</div>';
