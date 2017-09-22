@@ -352,8 +352,7 @@ $(document).on('ready', function() {
                             '<a name="map-canvas" class="gm-sv thumbnail" id="gm-sv'+i+'"><img src="https://maps.googleapis.com/maps/api/streetview?size=' +
                                 SV_THUMBNAIL + 'x50&location=' +
                                 markerDetails[i].latitude + ',' + markerDetails[i].longitude + '&heading=' + POV_HEADING + '&pitch=' + POV_PITCH  +
-                                '&key=AIzaSyAbwdrxUNhLcukCQahR1ZdP7m6QSHae-KM' +
-                                ' id="svThumbnail" /></a>' +
+                                '&key=AIzaSyAbwdrxUNhLcukCQahR1ZdP7m6QSHae-KM"' + ' id="svThumbnail" /></a>' +
                             '</div>' +
                         '</div>';
             }
