@@ -9,7 +9,7 @@ var addressForm = {
 };
 
 // initialize user's geolocator marker/pin
-var SELF_ICON = "http://maps.google.com/mapfiles/kml/pushpin/pink-pushpin.png";
+var SELF_ICON = "https://maps.google.com/mapfiles/kml/pushpin/pink-pushpin.png";
  
 var MARKER_HEIGHT = 30, MARKER_WIDTH = 30;  // constant val of marker/pin size
 var BOX_WIDTH = 320;                        // constant val of infowindow width
@@ -251,7 +251,7 @@ $(document).on('ready', function() {
             iconUrl = SELF_ICON;
         else {
             var markerLetter = String.fromCharCode("A".charCodeAt(0) + indexOfArray);
-            var iconUrl =  "http://maps.google.com/mapfiles/kml/paddle/" + markerLetter + ".png";
+            var iconUrl =  "https://maps.google.com/mapfiles/kml/paddle/" + markerLetter + ".png";
         }
 
         var marker = new google.maps.Marker({
@@ -358,7 +358,7 @@ $(document).on('ready', function() {
             }
 
 //          <img height="50px"' + SV_THUMBNAIL +'px" 
-//              src="http://cbk0.googleapis.com/cbk?output=thumbnail&cb_client=apiv3&v=4&panoid=' + 
+//              src="https://cbk0.googleapis.com/cbk?output=thumbnail&cb_client=apiv3&v=4&panoid=' +
 //              panoramaStreetView.getPano() + '&yaw=' + panoramaStreetView.getPov()+ 
 //              '&w=' + SV_THUMBNAIL +'&h=50&thumb=2"></img>
 //          <label class="gm-sv-label">Street View</label>

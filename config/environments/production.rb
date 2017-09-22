@@ -29,8 +29,6 @@ Gmap4Events::Application.configure do
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
 
-  Rails.application.config.assets.precompile += %w( *.js ^[^_]*.css *.css.erb )
-
   # Generate digests for assets URLs.
   config.assets.digest = true
 
