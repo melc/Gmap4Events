@@ -27,29 +27,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="_sidebar.html.erb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="_sidebar.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/maps/_sidebar.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="498">
-              <caret line="38" column="186" lean-forward="false" selection-start-line="38" selection-start-column="186" selection-end-line="38" selection-end-column="186" />
+              <caret line="38" column="280" lean-forward="false" selection-start-line="38" selection-start-column="280" selection-end-line="38" selection-end-column="280" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="maps.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="maps.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/maps.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
-              <caret line="351" column="205" lean-forward="false" selection-start-line="351" selection-start-column="205" selection-end-line="351" selection-end-column="205" />
+            <state relative-caret-position="432">
+              <caret line="355" column="47" lean-forward="false" selection-start-line="355" selection-start-column="47" selection-end-line="355" selection-end-column="47" />
               <folding>
-                <marker date="1506112082692" expanded="true" signature="12467:12493" ph="..." />
-                <marker date="1506112082692" expanded="true" signature="12593:12599" ph=" " />
-                <marker date="1506112082692" expanded="true" signature="12599:12605" ph=" " />
-                <marker date="1506112082692" expanded="true" signature="12617:12623" ph=" " />
-                <marker date="1506112082692" expanded="true" signature="12623:12629" ph=" " />
-                <marker date="1506112082692" expanded="true" signature="12629:12635" ph=" " />
-                <marker date="1506112082692" expanded="true" signature="13117:13151" ph="..." />
+                <marker date="1506113788249" expanded="true" signature="12467:12493" ph="..." />
+                <marker date="1506113788249" expanded="true" signature="12593:12599" ph=" " />
+                <marker date="1506113788249" expanded="true" signature="12599:12605" ph=" " />
+                <marker date="1506113788249" expanded="true" signature="12617:12623" ph=" " />
+                <marker date="1506113788249" expanded="true" signature="12623:12629" ph=" " />
+                <marker date="1506113788249" expanded="true" signature="12629:12635" ph=" " />
+                <marker date="1506113788249" expanded="true" signature="13117:13151" ph="..." />
               </folding>
             </state>
           </provider>
@@ -462,18 +462,18 @@
       <workItem from="1506055600957" duration="3602000" />
       <workItem from="1506062848505" duration="2974000" />
       <workItem from="1506101446595" duration="667000" />
-      <workItem from="1506107024225" duration="4413000" />
+      <workItem from="1506107024225" duration="5802000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20364000" />
+    <option name="totallyTimeSpent" value="21753000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="52" y="-4" width="1308" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26376146" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14449541" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -857,27 +857,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/maps/_sidebar.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/maps.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="38" column="186" lean-forward="false" selection-start-line="38" selection-start-column="186" selection-end-line="38" selection-end-column="186" />
-          <folding />
+        <state relative-caret-position="432">
+          <caret line="355" column="47" lean-forward="false" selection-start-line="355" selection-start-column="47" selection-end-line="355" selection-end-column="47" />
+          <folding>
+            <marker date="1506113788249" expanded="true" signature="12467:12493" ph="..." />
+            <marker date="1506113788249" expanded="true" signature="12593:12599" ph=" " />
+            <marker date="1506113788249" expanded="true" signature="12599:12605" ph=" " />
+            <marker date="1506113788249" expanded="true" signature="12617:12623" ph=" " />
+            <marker date="1506113788249" expanded="true" signature="12623:12629" ph=" " />
+            <marker date="1506113788249" expanded="true" signature="12629:12635" ph=" " />
+            <marker date="1506113788249" expanded="true" signature="13117:13151" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/maps.js">
+    <entry file="file://$PROJECT_DIR$/app/views/maps/_sidebar.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="351" column="205" lean-forward="false" selection-start-line="351" selection-start-column="205" selection-end-line="351" selection-end-column="205" />
-          <folding>
-            <marker date="1506112082692" expanded="true" signature="12467:12493" ph="..." />
-            <marker date="1506112082692" expanded="true" signature="12593:12599" ph=" " />
-            <marker date="1506112082692" expanded="true" signature="12599:12605" ph=" " />
-            <marker date="1506112082692" expanded="true" signature="12617:12623" ph=" " />
-            <marker date="1506112082692" expanded="true" signature="12623:12629" ph=" " />
-            <marker date="1506112082692" expanded="true" signature="12629:12635" ph=" " />
-            <marker date="1506112082692" expanded="true" signature="13117:13151" ph="..." />
-          </folding>
+        <state relative-caret-position="498">
+          <caret line="38" column="280" lean-forward="false" selection-start-line="38" selection-start-column="280" selection-end-line="38" selection-end-column="280" />
+          <folding />
         </state>
       </provider>
     </entry>
