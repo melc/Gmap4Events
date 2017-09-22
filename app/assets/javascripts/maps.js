@@ -349,7 +349,7 @@ $(document).on('ready', function() {
                                 '<div class="gm-phone">' + phone_number + '</div>' +
                             '</div>' +
                             '<div>' +
-                            '<a name="map-canvas" class="gm-sv thumbnail" id="gm-sv'+i+'"><img src="https://maps.googleapis.com/maps/api/streetview/metadata?size=' +
+                            '<a name="map-canvas" class="gm-sv thumbnail" id="gm-sv'+i+'"><img src="https://maps.googleapis.com/maps/api/streetview/metadata?key=AIzaSyAZOxVbiZx6XbtetbWe5yeuVuOT5Kr2Hrg&amp;size=' +
                                 SV_THUMBNAIL + 'x50&location=' +
                                 markerDetails[i].latitude + ',' + markerDetails[i].longitude + '&heading=' + POV_HEADING + '&pitch=' + POV_PITCH  +
                                 ' id="svThumbnail" /></a>' +
